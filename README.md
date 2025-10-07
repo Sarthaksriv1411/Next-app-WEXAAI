@@ -73,8 +73,6 @@ The Kubernetes manifest (`k8s/deployment.yml`) currently references the image ta
 
 ```bash
 minikube image load ghcr.io/sarthaksriv1411/next-app-wexaai:master
-# or, if your GHCR image uses `main`:
-# minikube image load ghcr.io/sarthaksriv1411/next-app-wexaai:main
 ```
 
 3. Deploy the manifests
@@ -102,18 +100,5 @@ Alternatively, the `Service` is a NodePort on `30080` (see `k8s/service.yml`) wh
 
 ---
 
-## Quick troubleshooting notes
-- Image pull errors: Make sure the image tag exists on GHCR. If the registry is private, create a Kubernetes image pull secret or load the image into Minikube as shown above.
-- Port already in use: The app uses port 3000. If that conflicts locally, stop the other service or run Docker/Next on a different port.
-- Minikube service not reachable: run `minikube ip` and confirm node IP, or use `minikube service nextjs-service --url` to get the correct URL.
-
-## Files I used as reference
-- `package.json` — the `start` script is `next start`, `dev` is `next dev`.
-- `k8s/deployment.yml` — image set to `ghcr.io/sarthaksriv1411/next-app-wexaai:master` and container port 3000.
-- `k8s/service.yml` — NodePort `30080` exposing the app.
-
----
-
-If anything here doesn't match what you see (tags, ports, etc.), adjust the command's tag or the manifest accordingly. I wrote this from the files in the repo so it should work as-is for my setup.
 
 — Sarthak

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextjs-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextjs
+  template:
+    metadata:
+      labels:
+        app: nextjs
+    spec:
+      containers:
+        - name: nextjs
+          image: ghcr.io/sarthaksriv1411/next-app-wexaai:master
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+            
